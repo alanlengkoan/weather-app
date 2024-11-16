@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:testing/page/forecast.dart';
+import 'package:testing/page/weather.dart';
 
 class PageHome extends StatefulWidget {
   const PageHome({super.key});
@@ -9,30 +10,6 @@ class PageHome extends StatefulWidget {
 }
 
 class _PageHomeState extends State<PageHome> {
-  String locationMessage = 'Current location of the User';
-  late String lat = '';
-  late String long = '';
-
-  Future<Position> _getCurrentLocation() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      return Future.error('Location services are disabled.');
-    }
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-    return await Geolocator.getCurrentPosition();
-  }
-
   @override
   Widget build(BuildContext context) {
     homeScreen() {
@@ -40,19 +17,28 @@ class _PageHomeState extends State<PageHome> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('text'),
+            const Text('Selamat Datang'),
             ElevatedButton(
               onPressed: () {
-                _getCurrentLocation().then((value) {
-                  lat = value.latitude.toString();
-                  long = value.longitude.toString();
-                  setState(() {
-                    locationMessage =
-                        'Latitude: ${value.latitude}, Longitude: ${value.longitude}';
-                  });
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PageWeather(),
+                  ),
+                );
               },
-              child: Text(locationMessage),
+              child: const Text('Weather'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PageForecast(),
+                  ),
+                );
+              },
+              child: const Text('Forecast'),
             ),
           ],
         ),
