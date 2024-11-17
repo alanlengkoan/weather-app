@@ -42,7 +42,11 @@ class _PageHomeState extends State<PageHome> {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => PageWeather(lat: lat, long: long),
+            builder: (context) => PageWeather(
+              lat: lat,
+              long: long,
+              status: 'current',
+            ),
           ),
           (route) => false,
         );
