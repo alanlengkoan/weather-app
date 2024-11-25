@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:testing/page/search.dart';
+import 'package:weather/page/search.dart';
 
 class PageWeather extends StatefulWidget {
   const PageWeather(
@@ -89,7 +89,7 @@ class _PageWeatherState extends State<PageWeather> {
       appBar: AppBar(
         title: const Text('Weather'),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1C6758),
+        backgroundColor: const Color(0xFF00C3FF),
         actions: [
           IconButton(
             onPressed: () => {
@@ -201,7 +201,7 @@ class _PageWeatherState extends State<PageWeather> {
         height: MediaQuery.sizeOf(context).height * 0.15,
         width: MediaQuery.sizeOf(context).width * 0.80,
         decoration: BoxDecoration(
-          color: Colors.green,
+          color: const Color(0xFF00AAF0),
           borderRadius: BorderRadius.circular(20),
         ),
         padding: const EdgeInsets.all(5),

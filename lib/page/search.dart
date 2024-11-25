@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testing/page/weather.dart';
+import 'package:weather/page/weather.dart';
 
 class PageSearch extends StatefulWidget {
   const PageSearch({super.key});
@@ -17,16 +17,18 @@ class _PageSearchState extends State<PageSearch> {
       _validateSearch = controllerSearch.text.isEmpty;
     });
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PageWeather(
-          search: controllerSearch.text,
-          status: 'search',
+    if (!_validateSearch) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PageWeather(
+            search: controllerSearch.text,
+            status: 'search',
+          ),
         ),
-      ),
-      (route) => false,
-    );
+        (route) => false,
+      );
+    }
   }
 
   @override
@@ -53,7 +55,7 @@ class _PageSearchState extends State<PageSearch> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1C6758),
+                backgroundColor: const Color(0xFF00C3FF),
               ),
               onPressed: () => searchLocation(),
               child: const Text(
@@ -70,7 +72,7 @@ class _PageSearchState extends State<PageSearch> {
       appBar: AppBar(
         title: const Text('Search'),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1C6758),
+        backgroundColor: const Color(0xFF00C3FF),
       ),
       body: Container(
         margin: const EdgeInsets.all(15),

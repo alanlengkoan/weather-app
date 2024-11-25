@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:testing/page/weather.dart';
+import 'package:weather/page/weather.dart';
 
 class PageHome extends StatefulWidget {
   const PageHome({super.key});
@@ -63,12 +63,17 @@ class _PageHomeState extends State<PageHome> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const FlutterLogo(
-              size: 250,
+            Image.asset(
+              'assets/logo.png',
+              height: 250,
+              width: 250,
+            ),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.08,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF000000),
+                backgroundColor: Colors.green,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -83,7 +88,7 @@ class _PageHomeState extends State<PageHome> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF1C6758),
+      backgroundColor: const Color(0xFF00C3FF),
       body: showScreen(),
     );
   }
